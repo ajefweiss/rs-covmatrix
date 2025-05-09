@@ -1,7 +1,6 @@
 #![doc = include_str!("../README.md")]
 #![deny(missing_docs)]
 
-use derive_more::Deref;
 use itertools::{Itertools, zip_eq};
 use nalgebra::{
     Const, DVector, DefaultAllocator, Dim, DimDiff, DimMin, DimMinimum, DimName, DimSub, Dyn,
@@ -21,7 +20,7 @@ use std::{
 /// A statically or dynamically sized covariance matrix.
 ///
 /// This type can be constructed directly from a positive semi-definite square matrix or from an ensemble of vectors.
-#[derive(Clone, Debug, Deref, Deserialize, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(bound(serialize = "T: Serialize, OMatrix<T, D, D>: Serialize"))]
 #[serde(bound(deserialize = "T: Deserialize<'de>, OMatrix<T, D, D>: Deserialize<'de>"))]
 pub struct CovMatrix<T, D>
@@ -36,7 +35,6 @@ where
     cholesky_l: Option<OMatrix<T, D, D>>,
 
     /// The underlying covariance matrix.
-    #[deref]
     matrix: OMatrix<T, D, D>,
 
     /// The determinant of the covariance matrix.
@@ -122,7 +120,8 @@ where
         let delta = DVector::from(x.iter().zip(mu).map(|(i, j)| *i - *j).collect::<Vec<T>>());
 
         Some(
-            -(self.pseudo_determinant?.ln() + self.rank(T::default_epsilon()).as_() * T::two_pi())
+            -(self.pseudo_determinant?.ln()
+                + self.matrix.rank(T::default_epsilon()).as_() * T::two_pi())
                 / 2.as_()
                 - self.mahalanobis(&delta.as_view()) / 2.as_(),
         )

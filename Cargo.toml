@@ -2,9 +2,15 @@
 name = "covmatrix"
 version = "0.1.0"
 edition = "2024"
+authors = ["Andreas Weiss <ajefweiss@gmail.com>"]
+description = "A small crate that implements a covariance matrix and related functionality"
+repository = "https://github.com/ajefweiss/rs-covmatrix"
+readme = "README.md"
+categories = ["science", "mathematics"]
+keywords = ["math"]
+license = "MIT License"
 
 [dependencies]
-derive_more = { version = "*", features = ["deref"] }
 itertools = "*"
 nalgebra = { version = "*", features = ["rayon", "serde-serialize"] }
 num-traits = "*"

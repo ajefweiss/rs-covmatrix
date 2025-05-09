@@ -1,0 +1,17 @@
+[package]
+name = "covmatrix"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+derive_more = { version = "*", features = ["deref"] }
+itertools = "*"
+nalgebra = { version = "*", features = ["rayon", "serde-serialize"] }
+num-traits = "*"
+serde = { version = "*", features = ["derive"] }
+rand = "*"
+rand_distr = "*"
+
+[dev-dependencies]
+approx = "*"
+rand_xoshiro = "*"

@@ -11,13 +11,13 @@ keywords = ["math"]
 license = "MIT License"
 
 [dependencies]
-itertools = "*"
-nalgebra = { version = "*", features = ["rayon", "serde-serialize"] }
-num-traits = "*"
-serde = { version = "*", features = ["derive"] }
-rand = "*"
-rand_distr = "*"
+itertools = "0.14.0"
+nalgebra = { version = "0.33.2", features = ["rayon", "serde-serialize"] }
+num-traits = "0.2.19"
+serde = { version = "1.0.219", features = ["derive"] } 
 
 [dev-dependencies]
-approx = "*"
-rand_xoshiro = "*"
+approx = "0.5.1"
+rand = "0.9.1"
+rand_distr = "0.5.1"
+rand_xoshiro = "0.7.0"
